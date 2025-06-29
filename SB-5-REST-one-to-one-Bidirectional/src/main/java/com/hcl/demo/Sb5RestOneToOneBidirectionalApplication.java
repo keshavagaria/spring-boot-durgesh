@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sb6RestOneToOneBidirectionalApplication {
+public class Sb5RestOneToOneBidirectionalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sb6RestOneToOneBidirectionalApplication.class, args);
+		SpringApplication.run(Sb5RestOneToOneBidirectionalApplication.class, args);
 	}
 
 }

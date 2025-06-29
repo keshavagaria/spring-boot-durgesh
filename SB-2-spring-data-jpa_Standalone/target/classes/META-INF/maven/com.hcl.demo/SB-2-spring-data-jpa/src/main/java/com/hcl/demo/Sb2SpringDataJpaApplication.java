@@ -1,17 +1,22 @@
 package com.hcl.demo;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import com.hcl.demo.dao.UserRepository;
 import com.hcl.demo.entity.UserDetails;
 
 @SpringBootApplication
+//@Configuration
+//@ComponentScan
+//@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class Sb2SpringDataJpaApplication {
 
 	public static void main(String[] args) {
