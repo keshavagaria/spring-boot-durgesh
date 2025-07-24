@@ -1,5 +1,6 @@
 package com.hcl.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,18 +19,22 @@ public class BookService {
 	public List<Book> getAllBook() {
 		
 		List<Book> bookList=(List)bookRepository.findAll();
+		System.out.println(bookList);
 		return bookList;
 	}
 	
-	public Book getBookById(int id) {
-		
-		Optional<Book> book = bookRepository.findById(id);
-		return book.get();
+	public List<Book> getBookByAuthor(String author) {
+	
+		List<Book> books =  bookRepository.findBookByAuthor(author);
+		System.out.println(books);
+		return books;
 	}
 	
-	public void addBook(Book book) {
+	public Book addBook(Book book) {
 		
-		bookRepository.save(book);
+		Book savedBook = bookRepository.save(book);
+		System.out.println(savedBook);
+		return savedBook;
 	}
 
 	public void deleteBookById(int id) {

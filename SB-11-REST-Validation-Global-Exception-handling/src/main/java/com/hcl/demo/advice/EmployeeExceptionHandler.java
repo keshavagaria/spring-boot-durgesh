@@ -17,13 +17,14 @@ public class EmployeeExceptionHandler {
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		Map<String,String > errors=new HashMap<>();
-		ex.getBindingResult().getAllErrors().forEach((error)->{
-			String fieldName=((FieldError)error).getField();
-			String errorMessage=error.getDefaultMessage();
-			errors.put(fieldName, errorMessage);
+		
+		Map<String,String > errorMap=new HashMap<>();
+		
+		ex.getBindingResult().getFieldErrors().forEach(error->{
+			
+			errorMap.put(error.getField(), error.getDefaultMessage());
 		});
-		return new ResponseEntity<Object>(errors,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Object>(errorMap,HttpStatus.BAD_REQUEST);
 	}
 
 	

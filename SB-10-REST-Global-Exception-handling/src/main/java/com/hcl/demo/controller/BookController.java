@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.demo.advice.MyControllerAdvice;
 import com.hcl.demo.entity.Book;
 import com.hcl.demo.exception.BusinessException;
 import com.hcl.demo.exception.ControllerException;
@@ -48,10 +49,11 @@ public class BookController {
 	}
 	
 	@PostMapping("/books")
-	public ResponseEntity<Book> addNewBook(@RequestBody  Book book) {
+	public ResponseEntity<?> addNewBook(@RequestBody  Book book) {
 		
 			bookService.addBook(book);
 			return ResponseEntity.status(HttpStatus.CREATED).body(book);
+		
 	}
 	
 	

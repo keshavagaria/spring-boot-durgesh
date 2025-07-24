@@ -1,22 +1,19 @@
 package com.hcl.demo.advice;
 
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.hcl.demo.exception.EmptyInputException;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class MyControllerAdvice extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(EmptyInputException.class)

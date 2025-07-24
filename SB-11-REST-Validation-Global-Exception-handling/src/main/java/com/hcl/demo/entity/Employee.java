@@ -26,6 +26,7 @@ public class Employee {
 	@Email
 	@NotBlank(message = "Email should not be blank")
 	private String emailAddress;
+	
 	public int getId() {
 		return id;
 	}
