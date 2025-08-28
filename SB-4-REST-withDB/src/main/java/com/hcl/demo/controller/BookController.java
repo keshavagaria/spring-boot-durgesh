@@ -35,7 +35,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/books/{id}")
-	public ResponseEntity<?> getBooks(@PathVariable int id) {
+	public ResponseEntity<?> getBookById(@PathVariable int id) {
 		
 		Optional<Book> book=bookService.getBookById(id);
 		if(book.isPresent()) {
@@ -63,6 +63,8 @@ public class BookController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}finally {
+			System.out.println("Finally block executed");
 		}
 		
 	}
@@ -76,6 +78,8 @@ public class BookController {
 		}catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}finally {
+			System.out.println("FInally BLock Executed");
 		}
 		
 	}
@@ -89,6 +93,8 @@ public class BookController {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}finally {
+			System.out.println("FInally BLock Executed");
 		}
 	}
 }

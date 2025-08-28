@@ -1,9 +1,9 @@
-package com.hcl.demo.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.hcl.demo.entity.Product;
-
-public interface ProductRepository extends JpaRepository<Product, Integer>{
-
-}
+//package com.hcl.demo.repository;
+//
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//import com.hcl.demo.entity.Product;
+//
+//public interface ProductRepository extends JpaRepository<Product, Integer>{
+//
+//}

@@ -3,8 +3,8 @@ package com.hcl.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.hcl.demo.entity.Address;
 import com.hcl.demo.entity.Employee;
 import com.hcl.demo.repository.EmployeeRepository;
@@ -17,7 +17,7 @@ public class EmployeeService {
 	@Autowired
 	private AddressService addressService;
 	
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Transactional(rollbackFor = Exception.class)
 	public Employee addEmployee(Employee employee) throws Exception {
 		
 		Employee savedEmployee = empRepository.save(employee);
@@ -25,14 +25,15 @@ public class EmployeeService {
 		if(savedEmployee.getName().equals("Ramesh")) {
 			throw new Exception();
 		}
+		
 		Address address=new Address();
-		address.setId(110075);
+		address.setId(110085);
     	address.setCity("Kohat Enclave");
     	address.setState("Delhi");
-    	address.setEmployee(employee);
+    	address.setEmployee(savedEmployee);
     	
     	addressService.addAddressToo(address);
-    	
+    	System.out.println("Employee Service is running...");
     	
 		return savedEmployee;
 	}

@@ -1,7 +1,6 @@
 package com.hcl.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import com.hcl.demo.dto.OrderRequest;
 import com.hcl.demo.dto.OrderResponse;
 import com.hcl.demo.entity.Customer;
 import com.hcl.demo.repository.CustomerRepository;
-import com.hcl.demo.repository.ProductRepository;
 
 @RestController
 public class OrderController {
@@ -22,8 +20,8 @@ public class OrderController {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	@Autowired
-	private ProductRepository productRepository;
+	//@Autowired
+	//private ProductRepository productRepository;
 
 	@PostMapping("/placeOrder")
 	public Customer placeOrder(@RequestBody OrderRequest orderRequest) {
@@ -36,7 +34,7 @@ public class OrderController {
 	public List<Customer> findAllOrders(){
 		
 		return customerRepository.findAll();
-		//return customerRepository.findWithoutNPlusOne();
+		//return customerRepository.findNPlusOneSolved();
 	}
 	
 	@GetMapping("/get/{id}")

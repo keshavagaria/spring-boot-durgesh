@@ -11,10 +11,8 @@ public class Address {
 	private int id;
 	private String city;
 	private String state;
-	
 	@OneToOne
 	private Employee employee;
-	
 	
 	public int getId() {
 		return id;
@@ -40,6 +38,7 @@ public class Address {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+	
 	
 	
 	

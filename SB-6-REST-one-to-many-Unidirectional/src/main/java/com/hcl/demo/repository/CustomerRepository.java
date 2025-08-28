@@ -18,7 +18,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	// N+1 problem solution -
 	// 1.
 	@Query("SELECT c FROM Customer c LEFT JOIN FETCH c.products")
-	public List<Customer> findWithoutNPlusOne();
+	public List<Customer> findNPlusOneSolved();
+	
 	// 2.
     @EntityGraph(attributePaths = {"products"})
 	public List<Customer> findAll();

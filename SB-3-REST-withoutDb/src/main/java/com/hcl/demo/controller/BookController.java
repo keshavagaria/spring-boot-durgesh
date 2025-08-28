@@ -3,6 +3,8 @@ package com.hcl.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,8 @@ import com.hcl.demo.service.BookService;
 @RestController
 public class BookController {
 
+	Logger logger = LoggerFactory.getLogger(BookController.class);
+	
 	@Autowired
 	private BookService bookService;
 	
@@ -72,8 +76,10 @@ public class BookController {
 	public ResponseEntity<List<Book>> getBooks() {
 		
 		List<Book> bookList=bookService.getAllBook();
+		logger.info("Fetching All Books {}",bookList);
+		
 		if(bookList.size()==0) {
-			
+			logger.error("Books Not Found");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.of(Optional.of(bookList));
@@ -83,7 +89,10 @@ public class BookController {
 	public ResponseEntity<Book> getBooks(@PathVariable int id) {
 		
 		Book book=bookService.getBookById(id);
+		logger.info("Fetching  Book by id {}",book);
+		
 		if(book==null) {
+			logger.error("Book Not Found");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.of(Optional.of(book));
@@ -93,10 +102,11 @@ public class BookController {
 	public ResponseEntity<Book> addNewBook(@RequestBody  Book book) {
 		try {
 			bookService.addBook(book);
+			logger.info("Saving  Book to Collection {}",book);
 			return ResponseEntity.of(Optional.of(book));
 		}catch (Exception e) {
 			e.printStackTrace();
-			
+			logger.error("Unable to save book detail",book);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 		
@@ -107,9 +117,11 @@ public class BookController {
 	public ResponseEntity<Void> deleteBookById(@PathVariable("bookId")  int id) {
 		try {
 			bookService.deleteBookById(id);
+			logger.info("Deleting  Book by id {}",id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}catch (Exception e) {
 			e.printStackTrace();
+			logger.error("Unable to delete book detail",id);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 		

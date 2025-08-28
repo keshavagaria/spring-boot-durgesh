@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: SB-3-REST-withoutDb
+
+logging:
+  file:
+    name: D:/logs/elk-stack.log

@@ -3,15 +3,11 @@ package com.hcl.demo;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import com.hcl.demo.dao.UserRepository;
-import com.hcl.demo.entity.UserDetails;
+import com.hcl.demo.entity.User_Details;
 
 @SpringBootApplication
 //@Configuration
@@ -90,9 +86,18 @@ public class Sb2SpringDataJpaApplication {
 //			
 			
 			//Native SQL Query
-			List<UserDetails> users6= repository.getUsers();
+			List<User_Details> users6= repository.getUsers("Vishal");
       		users6.forEach(e->System.out.println(e));
 			
+      		// Named query
+      		List<User_Details> users7 = repository.getUsersbyStatus("Programmer");
+      		users7.forEach(e->System.out.println(e));
+      		
+      		List<User_Details> users8 = repository.getUsersbyCity("UP");
+      		users8.forEach(e->System.out.println(e));
+      		
+      		List<User_Details> users9 = repository.getUsersbyCityStatus("UP","Sweeper");
+      		users9.forEach(e->System.out.println(e));
 			
 	}
 

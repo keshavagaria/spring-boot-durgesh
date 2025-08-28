@@ -3,18 +3,29 @@ package com.hcl.demo.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserDetails {
+//@NamedQuery(name = "getUserDetailsByStatus",query ="from User_Details ud where ud.status = ?1")
+@NamedQueries(value = {
+		@NamedQuery(name = "getUserDetailsByStatus",query ="from User_Details ud where ud.status = ?1"),
+		@NamedQuery(name = "getUserDetailsByCity",query ="from User_Details ud where ud.city = ?1"),
+})
+@NamedNativeQuery(name = "getUserDetailsByCityStatus",query = "select id,city,name,status from User_Details where city = ?1"
+		+ " and status = ?2")
+public class User_Details {
 
 	@Id
 	@GeneratedValue

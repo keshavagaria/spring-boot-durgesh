@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sb6RestOneToManyToOneBidirectionalApplication {
+public class Sb18SpringDataMongoDbApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sb6RestOneToManyToOneBidirectionalApplication.class, args);
+		SpringApplication.run(Sb18SpringDataMongoDbApplication.class, args);
 	}
 
 }
