@@ -27,6 +27,7 @@ class Sb4SpringBootRestWithDbApplicationTests {
 
 	@Autowired
 	private BookService bookService;
+	
 	@MockBean
 	private BookRepository bookRepository;
 	
@@ -38,6 +39,7 @@ class Sb4SpringBootRestWithDbApplicationTests {
 		
 		assertEquals(2, bookService.getAllBook().size());
 	}
+	
 	@Test
 	public void getBookByIdTest() {
 		int id = 101;
@@ -51,14 +53,16 @@ class Sb4SpringBootRestWithDbApplicationTests {
 		when(bookRepository.save(book)).thenReturn(book);
 		assertEquals(book, bookService.addBook(book));
 	}
-	/*
-	public void updateBook() {
+
+	@Test
+	public void updateBookTest() {
 		Book book = new Book(102, "The Java Black Book", "Vishal");
 		int id = 102;
 		when(bookRepository.save(book)).thenReturn(book);
 		assertEquals(book, bookService.updateBook(book,id));
 		
-	}*/
+	}
+	
 	@Test
 	public void deleteBookTest() {
 		Book book = new Book(102, "C in Depth", "Vishal");

@@ -1,7 +1,5 @@
 package com.hcl.demo.entity;
 
-import java.util.Date;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Entity;

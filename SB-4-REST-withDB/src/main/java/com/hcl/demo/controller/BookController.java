@@ -71,9 +71,9 @@ public class BookController {
 	
 	
 	@DeleteMapping("/books/{bookId}")
-	public ResponseEntity<Void> deleteBookById(@PathVariable("bookId")  int id) {
+	public ResponseEntity<Void> deleteBook(@RequestBody  Book book) {
 		try {
-			bookService.deleteBookById(id);
+			bookService.deleteBook(book);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}catch (Exception e) {
 			e.printStackTrace();

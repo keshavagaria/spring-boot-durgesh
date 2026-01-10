@@ -38,14 +38,14 @@ public class BookService {
 	public void deleteBook(Book book) {
 		
 		System.out.println("Artificially Deleting data to DB "+book);
-		bookRepository.delete(book);
+		 bookRepository.delete(book);
 		
 	}
 
 	
 
-	public void updateBook(Book book, int id) {
+	public Book updateBook(Book book, int id) {
 		
-		bookRepository.save(book);
+		return bookRepository.save(book);
 	}
 }

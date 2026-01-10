@@ -20,7 +20,7 @@ public class Customer {
 	private String email;
 	private String gender;
 	
-	@OneToMany(targetEntity = Product.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = Product.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "cp_fk",referencedColumnName = "id")
 //	@JoinTable(name = "CUSTOMER_PRODUCT_TABLE",
 //		joinColumns = {@JoinColumn(name="THE_CUSTOMER_ID")},

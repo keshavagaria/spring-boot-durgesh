@@ -26,7 +26,7 @@ public class BookController {
 	@GetMapping("/books")
 	public ResponseEntity<List<Book>> getBooks() {
 		
-		List<Book> bookList=bookService.getAllBook();
+		List<Book> bookList=bookService.getAllBooks();
 		if(bookList.size()==0) {
 			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -35,23 +35,16 @@ public class BookController {
 	}
 	
 	@GetMapping("/books/{id}")
-	public ResponseEntity<?> getBooks(@PathVariable int id) {
+	public ResponseEntity<?> getBookById(@PathVariable int id) {
 		
-		Book book=bookService.getBookById(id);
-		if(book!=null) {
-			//Optional<String> author=Optional.of(book.get().getAuthor());
-			Optional<String> author=Optional.ofNullable(book.getAuthor().toUpperCase());
-/*			if(author.isPresent()) {
-			return new ResponseEntity<>("Author is null or given book",HttpStatus.NOT_FOUND);
-		}
-*/		
-			//author.ifPresent(n -> System.out.println("Name is Present - "+n));
-			author.ifPresentOrElse((n) -> System.out.println("Name is Present - "+n),
-									() -> System.out.println("Name is not present"));
+		Optional<Book> book=bookService.getBookById(id);
+		if(book.isPresent()) {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(book);
 		}else {
 			return new ResponseEntity<>("Book with given id is not found!!!",HttpStatus.NOT_FOUND);
 		}
-		return null;
+	
 	}
 	
 	@PostMapping("/books")

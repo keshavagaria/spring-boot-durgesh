@@ -72,9 +72,10 @@ public class JournalEntryController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@PutMapping("/id/{myId}")
+	@PutMapping("/id/{username}/{myId}")
 	public ResponseEntity<JournalEntry> updateEntryById(@PathVariable ObjectId myId,
-									@RequestBody JournalEntry newEntry) {
+									@RequestBody JournalEntry newEntry,
+									@PathVariable String username) {
 		JournalEntry oldEntry = journalEntryService.getEntryById(myId).orElse(null);
 		if(oldEntry != null) {
 			oldEntry.setTitle(newEntry.getTitle()!=null && !newEntry.getTitle().equals("")
@@ -82,7 +83,7 @@ public class JournalEntryController {
 			oldEntry.setContent(newEntry.getContent()!=null && !newEntry.getContent().equals("")
 					? newEntry.getContent() : oldEntry.getContent());
 			
-			//wjournalEntryService.saveEntry(oldEntry);
+			journalEntryService.saveEntry(oldEntry);
 			return new ResponseEntity<>(oldEntry,HttpStatus.OK);
 		}
 		

@@ -8,6 +8,10 @@ public class Sb16RestJunitApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Sb16RestJunitApplication.class, args);
+
 	}
+	
+	
+
 
 }

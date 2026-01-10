@@ -7,7 +7,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
+
 @Document(collection = "journal_entries")
+@AllArgsConstructor
 public class JournalEntry {
 
 	@Id
