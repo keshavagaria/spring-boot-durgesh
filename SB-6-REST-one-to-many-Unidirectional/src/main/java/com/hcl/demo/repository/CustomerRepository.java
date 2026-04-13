@@ -20,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	@Query("SELECT c FROM Customer c LEFT JOIN FETCH c.products")
 	public List<Customer> findNPlusOneSolved();
 //	
-//	// 2.
+	// 2.
     @EntityGraph(attributePaths = {"products"})
 	public List<Customer> findAll();
 }

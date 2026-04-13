@@ -26,7 +26,7 @@ public interface UserRepository extends CrudRepository<User_Details, Integer>{
 	
 	
 	//native Query
-	@Query(value = "SELECT * FROM User_Details where name = :n",nativeQuery = true)
+	@Query(value = "SELECT * FROM USER_DETAILS_TBL where name = :n",nativeQuery = true)
 	public List<User_Details> getUsers(@Param("n") String name);
 	
 //	@Query(value = "SELECT * FROM User_Details where name = ?1",nativeQuery = true)
@@ -39,7 +39,7 @@ public interface UserRepository extends CrudRepository<User_Details, Integer>{
 	@Query(name = "getUserDetailsByCity")
 	public List<User_Details> getUsersbyCity(String city);
 	
-	@Query(name = "getUserDetailsByCityStatus",nativeQuery = true)
-	public List<User_Details> getUsersbyCityStatus(String city, String status);
+//	@Query(name = "getUserDetailsByCityStatus",nativeQuery = true)
+//	public List<User_Details> getUsersbyCityStatus(String city, String status);
 	
 }

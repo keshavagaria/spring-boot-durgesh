@@ -1,7 +1,12 @@
 package com.hcl.demo;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +20,22 @@ import com.hcl.demo.entity.User_Details;
 //@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class Sb2SpringDataJpaApplication {
 
+	@Autowired
+	private UserRepository repo;
+	
+	@PostConstruct
+	public void initUsers() {
+		 List<User_Details> users = Stream.of(
+	                new User_Details(101, "javatechie", "Delhi", "Teacher"),
+	                new User_Details(102, "VIshal", "Delhi", "Engineer"),
+	                new User_Details(103, "KEshav", "Mohali", "Scientist"),
+	                new User_Details(104, "Aman", "Jaipur", "Advocate")
+	        ).collect(Collectors.toList());
+		 
+		 repo.saveAll(users);
+	        
+	}
+	
 	public static void main(String[] args) {
 	
 		ApplicationContext context=	  SpringApplication.run(Sb2SpringDataJpaApplication.class, args);
@@ -90,14 +111,14 @@ public class Sb2SpringDataJpaApplication {
       		users6.forEach(e->System.out.println(e));
 			
       		// Named query
-      		List<User_Details> users7 = repository.getUsersbyStatus("Programmer");
+      		List<User_Details> users7 = repository.getUsersbyStatus("Teacher");
       		users7.forEach(e->System.out.println(e));
       		
-      		List<User_Details> users8 = repository.getUsersbyCity("UP");
+      		List<User_Details> users8 = repository.getUsersbyCity("Delhi");
       		users8.forEach(e->System.out.println(e));
       		
-      		List<User_Details> users9 = repository.getUsersbyCityStatus("UP","Sweeper");
-      		users9.forEach(e->System.out.println(e));
+//      		List<User_Details> users9 = repository.getUsersbyCityStatus("UP","Sweeper");
+//      		users9.forEach(e->System.out.println(e));
 			
 	}
 
