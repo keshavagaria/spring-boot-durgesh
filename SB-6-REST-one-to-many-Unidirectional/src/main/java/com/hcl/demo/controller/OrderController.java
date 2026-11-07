@@ -13,12 +13,13 @@ import com.hcl.demo.dto.OrderRequest;
 import com.hcl.demo.dto.OrderResponse;
 import com.hcl.demo.entity.Customer;
 import com.hcl.demo.repository.CustomerRepository;
+import com.hcl.demo.service.CustomerService;
 
 @RestController
 public class OrderController {
 	
 	@Autowired
-	private CustomerRepository customerRepository;
+	private CustomerService customerService;
 	
 	//@Autowired
 	//private ProductRepository productRepository;
@@ -26,27 +27,27 @@ public class OrderController {
 	@PostMapping("/placeOrder")
 	public Customer placeOrder(@RequestBody OrderRequest orderRequest) {
 		
-		 Customer customer=customerRepository.save(orderRequest.getCustomer());
+		 Customer customer=customerService.save(orderRequest.getCustomer());
 		return customer;
 	}
 	
 	@GetMapping("/getAllOrders")
 	public List<Customer> findAllOrders(){
 		
-		return customerRepository.findAll();
-		//return customerRepository.findNPlusOneSolved();
+	//	return customerService.findAllOrders();
+		return customerService.findNPlusOneSolved();
 	}
 	
-	@GetMapping("/get/{id}")
-	public Customer findById(@PathVariable Integer id){
-			Customer customer = customerRepository.findById(id).get();
+	@GetMapping("/getCustomer/{id}")
+	public Customer findCustomerById(@PathVariable Integer id){
+			Customer customer = customerService.findCustomerById(id);
 		return customer;
 		
 	}
 	@GetMapping("/getJoinInfo")
 	public List<OrderResponse> getJoinInformation(){
 		
-		return customerRepository.getJoinInformation();
+		return customerService.getJoinInformation();
 		
 	}
 }

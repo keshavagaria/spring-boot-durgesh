@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-13-REST-transaction-isolation-propagation-level" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-20-spring-jenkins" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-21-spring-jenkins-docker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-26-springboot-multithreading-example" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-4-REST-withDB-stored_procedures" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-7-REST-many-to-many_Bidirectional" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-7.1-REST-many-to-many_Bidirectional2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SB-8-REST-jpa-inheritence-mapping" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/journalApp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/orderFulfillmentService-async" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/spring-data-redis-db" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/validation-exception-handling" vcs="Git" />
+  </component>
+</project>

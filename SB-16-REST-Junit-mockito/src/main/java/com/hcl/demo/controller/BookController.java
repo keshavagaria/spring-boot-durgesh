@@ -12,29 +12,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.demo.dto.BookDTO;
 import com.hcl.demo.entity.Book;
 import com.hcl.demo.service.BookService;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
 	
-	@GetMapping("/books")
-	public ResponseEntity<List<Book>> getBooks() {
+	@GetMapping("")
+	public ResponseEntity<List<BookDTO>> getBooks() {
 		
-		List<Book> bookList=bookService.getAllBooks();
-		if(bookList.size()==0) {
+		List<BookDTO> bookListDTO=bookService.getAllBooks();
+		if(bookListDTO.size()==0) {
 			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
-		return ResponseEntity.of(Optional.of(bookList));
+		return ResponseEntity.of(Optional.of(bookListDTO));
 	}
 	
-	@GetMapping("/books/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<?> getBookById(@PathVariable int id) {
 		
 		Optional<Book> book=bookService.getBookById(id);
@@ -47,11 +50,12 @@ public class BookController {
 	
 	}
 	
-	@PostMapping("/books")
-	public ResponseEntity<Book> addNewBook(@RequestBody  Book book) {
+	@PostMapping("")
+	public ResponseEntity<BookDTO> addNewBook(@RequestBody  BookDTO bookDto) {
 		try {
-			bookService.addBook(book);
-			return ResponseEntity.status(HttpStatus.CREATED).body(book);
+			BookDTO dto =  bookService.addBook(bookDto);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(dto);
 		}catch (Exception e) {
 			e.printStackTrace();
 			

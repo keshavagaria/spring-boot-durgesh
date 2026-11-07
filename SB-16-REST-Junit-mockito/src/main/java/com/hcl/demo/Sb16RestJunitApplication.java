@@ -1,7 +1,9 @@
 package com.hcl.demo;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Sb16RestJunitApplication {
@@ -11,7 +13,9 @@ public class Sb16RestJunitApplication {
 
 	}
 	
-	
-
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
 }

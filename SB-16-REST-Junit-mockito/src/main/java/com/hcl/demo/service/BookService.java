@@ -4,25 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.PermissionDeniedDataAccessException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.hcl.demo.dao.BookRepository;
+import com.hcl.demo.dto.BookDTO;
 import com.hcl.demo.entity.Book;
-import com.hcl.demo.exceptions.BusinessException;
 
-@Component
+@Service
 public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public List<Book> getAllBooks() {
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	public List<BookDTO> getAllBooks() {
 		
 		List<Book> bookList=(List)bookRepository.findAll();
+		List<BookDTO> bookDTOs = new ArrayList<>();
+		for(Book book : bookList) {
+			BookDTO bookDTO = this.modelMapper.map(book, BookDTO.class);
+			bookDTOs.add(bookDTO);
+		}
 		System.out.println(bookList);
-		return bookList;
+		return bookDTOs;
 	}
 	
 	public List<Book> getBookByAuthor(String author) {
@@ -32,11 +41,13 @@ public class BookService {
 		return books;
 	}
 	
-	public Book addBook(Book book) {
+	public BookDTO addBook(BookDTO bookDto) {
 		
+		Book book = new ModelMapper().map(bookDto, Book.class);
 		Book savedBook = bookRepository.save(book);
 		System.out.println(savedBook);
-		return savedBook;
+		return new ModelMapper().map(savedBook, BookDTO.class);
+		
 	}
 
 	public void deleteBookById(int id) {
